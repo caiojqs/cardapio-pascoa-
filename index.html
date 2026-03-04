@@ -50,6 +50,12 @@
             letter-spacing: 1px;
         }
 
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 22px;
+            }
+        }
+
         header p {
             font-size: 14px;
             opacity: 0.95;
@@ -115,6 +121,12 @@
             z-index: 1;
         }
 
+        @media (max-width: 480px) {
+            .banner h2 {
+                font-size: 18px;
+            }
+        }
+
         .banner p {
             font-size: 15px;
             color: var(--texto-escuro);
@@ -160,9 +172,23 @@
         /* GRID DE PRODUTOS */
         .produtos-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
             margin-bottom: 40px;
+        }
+
+        @media (max-width: 768px) {
+            .produtos-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .produtos-grid {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
         }
 
         .produto-card {
@@ -181,11 +207,30 @@
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
 
+        @media (max-width: 480px) {
+            .produto-card:hover {
+                transform: none;
+            }
+        }
+
         .produto-imagem {
             width: 100%;
             height: 220px;
-            object-fit: cover;
+            object-fit: contain;
             background: linear-gradient(135deg, var(--creme), var(--rosa-suave));
+            padding: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .produto-imagem {
+                height: 200px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .produto-imagem {
+                height: 180px;
+            }
         }
 
         .produto-info {
