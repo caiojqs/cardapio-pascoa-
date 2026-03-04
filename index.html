@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cardápio de Páscoa - Patricia Mathias. Delícias artesanais feitas com amor.">
+    <meta name="keywords" content="Páscoa, chocolate, bombom, confeitaria, artesanal">
+    <meta name="author" content="Patricia Mathias">
+    <title>Páscoa Patricia Mathias - Cardápio Digital</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --chocolate: #6B4423;
+            --dourado: #D4AF37;
+            --creme: #F5E6D3;
+            --rosa-suave: #E8B4C8;
+            --branco: #FFFFFF;
+            --texto-escuro: #3D2817;
+            --sombra: rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--creme) 0%, #FFF9F0 100%);
+            color: var(--texto-escuro);
+            line-height: 1.6;
+        }
+
+        /* HEADER */
+        header {
+            background: linear-gradient(135deg, var(--chocolate) 0%, #8B5A3C 100%);
+            color: var(--branco);
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 15px var(--sombra);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        header p {
+            font-size: 14px;
+            opacity: 0.95;
+            margin-bottom: 12px;
+        }
+
+        .header-btn {
+            display: inline-block;
+            background: var(--rosa-suave);
+            color: var(--texto-escuro);
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 13px;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .header-btn:hover {
+            background: var(--dourado);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* BANNER */
+        .banner {
+            background: linear-gradient(135deg, var(--rosa-suave) 0%, var(--dourado) 100%);
+            padding: 30px 20px;
+            text-align: center;
+            margin: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px var(--sombra);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .banner::before {
+            content: "🐰";
+            position: absolute;
+            font-size: 80px;
+            opacity: 0.1;
+            left: 10px;
+            top: 10px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .banner::after {
+            content: "🍫";
+            position: absolute;
+            font-size: 80px;
+            opacity: 0.1;
+            right: 10px;
+            bottom: 10px;
+            animation: float 3s ease-in-out infinite reverse;
+        }
+
+        .banner h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--texto-escuro);
+            position: relative;
+            z-index: 1;
+        }
+
+        .banner p {
+            font-size: 15px;
+            color: var(--texto-escuro);
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* CONTAINER */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* SEÇÃO DE PRODUTOS */
+        .secao-titulo {
+            text-align: center;
+            margin: 40px 0 30px;
+            font-size: 22px;
+            color: var(--chocolate);
+            font-weight: 700;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .secao-titulo::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--dourado), var(--rosa-suave));
+            border-radius: 2px;
+        }
+
+        /* GRID DE PRODUTOS */
+        .produtos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+
+        .produto-card {
+            background: var(--branco);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px var(--sombra);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .produto-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .produto-imagem {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            background: linear-gradient(135deg, var(--creme), var(--rosa-suave));
+        }
+
+        .produto-info {
+            padding: 18px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .produto-nome {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--chocolate);
+            margin-bottom: 8px;
+        }
+
+        .produto-descricao {
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 12px;
+            flex: 1;
+        }
+
+        .produto-preco {
+            font-size: 20px;
+            font-weight: 700;
+            color: var(--dourado);
+            margin-bottom: 12px;
+        }
+
+        .produto-btn {
+            background: linear-gradient(135deg, var(--chocolate), #8B5A3C);
+            color: var(--branco);
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 13px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: block;
+            text-align: center;
+        }
+
+        .produto-btn:hover {
+            background: linear-gradient(135deg, #8B5A3C, var(--chocolate));
+            transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        /* SEÇÃO ESPECIAL - BOMBONS */
+        .secao-bombons {
+            background: linear-gradient(135deg, var(--rosa-suave) 0%, var(--creme) 100%);
+            padding: 30px 20px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 15px var(--sombra);
+        }
+
+        .secao-bombons h3 {
+            text-align: center;
+            font-size: 20px;
+            color: var(--chocolate);
+            margin-bottom: 10px;
+        }
+
+        .secao-bombons .destaque {
+            text-align: center;
+            font-size: 13px;
+            color: var(--texto-escuro);
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .opcoes-bombons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .opcao-bombom {
+            background: var(--branco);
+            padding: 18px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 2px 10px var(--sombra);
+            transition: all 0.3s ease;
+        }
+
+        .opcao-bombom:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 15px var(--sombra);
+        }
+
+        .opcao-bombom .quantidade {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--chocolate);
+            margin-bottom: 8px;
+        }
+
+        .opcao-bombom .preco {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--dourado);
+            margin-bottom: 12px;
+        }
+
+        .opcao-bombom .btn-opcao {
+            background: var(--chocolate);
+            color: var(--branco);
+            border: none;
+            padding: 10px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .opcao-bombom .btn-opcao:hover {
+            background: #8B5A3C;
+            transform: scale(1.02);
+        }
+
+        /* BOTÃO FLUTUANTE WHATSAPP */
+        .whatsapp-flutuante {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            z-index: 999;
+            animation: pulse 2s infinite;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .whatsapp-flutuante:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); }
+            50% { box-shadow: 0 4px 25px rgba(37, 211, 102, 0.6); }
+        }
+
+        /* RODAPÉ */
+        footer {
+            background: linear-gradient(135deg, var(--chocolate) 0%, #8B5A3C 100%);
+            color: var(--branco);
+            padding: 30px 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        footer h4 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        footer p {
+            font-size: 13px;
+            opacity: 0.9;
+            margin-bottom: 8px;
+        }
+
+        .footer-divider {
+            width: 40px;
+            height: 2px;
+            background: var(--dourado);
+            margin: 15px auto;
+        }
+
+        .footer-frase {
+            font-style: italic;
+            font-size: 14px;
+            margin-top: 15px;
+            opacity: 0.95;
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 24px;
+            }
+
+            .banner h2 {
+                font-size: 20px;
+            }
+
+            .produtos-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .opcoes-bombons {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .secao-titulo {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 20px;
+            }
+
+            header p {
+                font-size: 12px;
+            }
+
+            .banner {
+                padding: 20px;
+                margin: 15px;
+            }
+
+            .banner h2 {
+                font-size: 18px;
+            }
+
+            .produto-card {
+                border-radius: 12px;
+            }
+
+            .produto-imagem {
+                height: 180px;
+            }
+
+            .produto-nome {
+                font-size: 15px;
+            }
+
+            .produto-preco {
+                font-size: 18px;
+            }
+
+            .opcoes-bombons {
+                grid-template-columns: 1fr;
+            }
+
+            .whatsapp-flutuante {
+                width: 55px;
+                height: 55px;
+                font-size: 28px;
+                bottom: 15px;
+                right: 15px;
+            }
+
+            footer {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HEADER -->
+    <header>
+        <h1>🐰 Patricia Mathias 🍫</h1>
+        <p>Especial de Páscoa - Encomendas Abertas</p>
+        <a href="https://wa.me/5511982524518?text=Olá%20Patricia!%20Vim%20pelo%20cardápio%20de%20Páscoa%20e%20gostaria%20de%20fazer%20um%20pedido." class="header-btn">📱 Pedir no WhatsApp</a>
+    </header>
+
+    <!-- BANNER PRINCIPAL -->
+    <div class="banner">
+        <h2>🌸 Encomendas de Páscoa Abertas 🌸</h2>
+        <p>Delícias artesanais feitas com amor</p>
+    </div>
+
+    <!-- CONTAINER PRINCIPAL -->
+    <div class="container">
+        <!-- SEÇÃO DE PRODUTOS PRINCIPAIS -->
+        <h2 class="secao-titulo">✨ Nossos Produtos</h2>
+
+        <div class="produtos-grid">
+            <!-- Produto 1 -->
+            <div class="produto-card">
+                <img src="images/produto01-cesta.jpeg" alt="Kit Confeiteiro de Páscoa" class="produto-imagem">
+                <div class="produto-info">
+                    <h3 class="produto-nome">Kit Confeiteiro de Páscoa</h3>
+                    <p class="produto-descricao">Uma linda cesta de metal recheada com ovinhos e canetinhas para as crianças decorarem.</p>
+                    <p class="produto-preco">R$ 48,50</p>
+                    <a href="https://wa.me/5511982524518?text=Olá%20Patricia!%20Gostaria%20de%20encomendar%20o%20Kit%20Confeiteiro%20de%20Páscoa." class="produto-btn">Pedir no WhatsApp</a>
+                </div>
+            </div>
+
+            <!-- Produto 2 -->
+            <div class="produto-card">
+                <img src="images/produto02-ovinho-bombom.jpeg" alt="Ovinho de Metal com Bombons" class="produto-imagem">
+                <div class="produto-info">
+                    <h3 class="produto-nome">Ovinho de Metal com Bombons</h3>
+                    <p class="produto-descricao">Um mimo encantador! Ovinho de metal decorado recheado com 3 deliciosos bombons de chocolate.</p>
+                    <p class="produto-preco">R$ 7,50</p>
+                    <a href="https://wa.me/5511982524518?text=Olá%20Patricia!%20Gostaria%20de%20encomendar%20o%20Ovinho%20de%20Metal%20com%20Bombons." class="produto-btn">Pedir no WhatsApp</a>
+                </div>
+            </div>
+
+            <!-- Produto 3 -->
+            <div class="produto-card">
+                <img src="images/produto03-lata-coelhinho.jpeg" alt="Lata Coelhinho com Ovo de 250g" class="produto-imagem">
+                <div class="produto-info">
+                    <h3 class="produto-nome">Lata Coelhinho com Ovo 250g</h3>
+                    <p class="produto-descricao">Uma charmosa lata decorada de coelhinho, acompanhada de um delicioso ovo de chocolate artesanal de 250g.</p>
+                    <p class="produto-preco">R$ 79,50</p>
+                    <a href="https://wa.me/5511982524518?text=Olá%20Patricia!%20Gostaria%20de%20encomendar%20a%20Lata%20Coelhinho%20com%20Ovo%20de%20250g." class="produto-btn">Pedir no WhatsApp</a>
+                </div>
+            </div>
+
+            <!-- Produto 4 -->
+            <div class="produto-card">
+                <img src="images/produto04-bomboniere.jpeg" alt="Bomboniere de Vidro com Bombons" class="produto-imagem">
+                <div class="produto-info">
+                    <h3 class="produto-nome">Bomboniere de Vidro</h3>
+                    <p class="produto-descricao">Uma elegante bomboniere de vidro com 50g de bombons artesanais. Um presente sofisticado que decora e delicia.</p>
+                    <p class="produto-preco">R$ 25,00</p>
+                    <a href="https://wa.me/5511982524518?text=Olá%20Patricia!%20Gostaria%20de%20encomendar%20a%20Bomboniere%20de%20Vidro." class="produto-btn">Pedir no WhatsApp</a>
+                </div>
+            </div>
+
+            <!-- Produto 5 -->
+            <div class="produto-card">
+                <img src="images/produto05-pote-vidro.jpeg" alt="Pote de Vidro com Bombons de Frutas Secas" class="produto-imagem">
+                <div class="produto-info">
+                    <h3 class="produto-nome">Pote de Vidro com Frutas Secas</h3>
+                    <p class="produto-descricao">Um charmoso pote de vidro com tampa de rolha, contendo 200g de deliciosos bombons com frutas secas.</p>
+                    <p class="produto-preco">R$ 45,00</p>
+                    <a href="https://wa.me/5511982524518?text=Olá%20Patricia!%20Gostaria%20de%20encomendar%20o%20Pote%20de%20Vidro%20com%20Bombons%20de%20Frutas%20Secas." class="produto-btn">Pedir no WhatsApp</a>
+                </div>
+            </div>
+
+            <!-- Produto 6 -->
+            <div class="produto-card">
+                <img src="images/produto06-copo-pintar.jpeg" alt="Copo Mágico de Páscoa" class="produto-imagem">
+                <div class="produto-info">
+                    <h3 class="produto-nome">Copo Mágico de Páscoa</h3>
+                    <p class="produto-descricao">A diversão é em dobro! Um copo com desenho de coelhinho para colorir com giz de cera, recheado de doces coloridos.</p>
+                    <p class="produto-preco">R$ 30,00</p>
+                    <a href="https://wa.me/5511982524518?text=Olá%20Patricia!%20Gostaria%20de%20encomendar%20o%20Copo%20Mágico%20de%20Páscoa." class="produto-btn">Pedir no WhatsApp</a>
+                </div>
+            </div>
+
+            <!-- Produto 7 -->
+            <div class="produto-card">
+                <img src="images/produto07-bolsa-coelhinho.jpeg" alt="Bolsa Coelhinho de Pelúcia com Doces" class="produto-imagem">
+                <div class="produto-info">
+                    <h3 class="produto-nome">Bolsa Coelhinho de Pelúcia</h3>
+                    <p class="produto-descricao">Uma adorável bolsa de coelhinho em tecido, recheada com doces sortidos. Disponível em azul e amarela.</p>
+                    <p class="produto-preco">R$ 33,00</p>
+                    <a href="https://wa.me/5511982524518?text=Olá%20Patricia!%20Gostaria%20de%20encomendar%20a%20Bolsa%20Coelhinho%20de%20Pelúcia." class="produto-btn">Pedir no WhatsApp</a>
+                </div>
+            </div>
+
+            <!-- Produto 8 -->
+            <div class="produto-card">
+                <img src="images/produto08-lata-oreo.jpeg" alt="Lata Ovo com Bolachas Oreo" class="produto-imagem">
+                <div class="produto-info">
+                    <h3 class="produto-nome">Lata Ovo com Bolachas Oreo</h3>
+                    <p class="produto-descricao">Uma linda lata em formato de ovo, com tema de Páscoa, recheada com deliciosas bolachinhas Oreo.</p>
+                    <p class="produto-preco">R$ 18,00</p>
+                    <a href="https://wa.me/5511982524518?text=Olá%20Patricia!%20Gostaria%20de%20encomendar%20a%20Lata%20Ovo%20com%20Bolachas%20Oreo." class="produto-btn">Pedir no WhatsApp</a>
+                </div>
+            </div>
+
+            <!-- Produto 9 -->
+            <div class="produto-card">
+                <img src="images/produto09-ovo-acrilico.jpeg" alt="Ninho de Acrílico com Coelhinho" class="produto-imagem">
+                <div class="produto-info">
+                    <h3 class="produto-nome">Ninho de Acrílico com Coelhinho</h3>
+                    <p class="produto-descricao">Um charmoso ovo de acrílico que serve como um ninho para um coelhinho de pelúcia e 100g de bombons.</p>
+                    <p class="produto-preco">R$ 25,00</p>
+                    <a href="https://wa.me/5511982524518?text=Olá%20Patricia!%20Gostaria%20de%20encomendar%20o%20Ninho%20de%20Acrílico%20com%20Coelhinho." class="produto-btn">Pedir no WhatsApp</a>
+                </div>
+            </div>
+
+            <!-- Produto 10 -->
+            <div class="produto-card">
+                <img src="images/produto10-arranjo-premium.jpeg" alt="Arranjo Premium Abraço de Urso" class="produto-imagem">
+                <div class="produto-info">
+                    <h3 class="produto-nome">Arranjo Premium "Abraço de Urso"</h3>
+                    <p class="produto-descricao">Um presente inesquecível! Urso de pelúcia segurando uma taça iluminada com arranjo de flores, porta-joias e chocolates finos.</p>
+                    <p class="produto-preco">R$ 170,00</p>
+                    <a href="https://wa.me/5511982524518?text=Olá%20Patricia!%20Gostaria%20de%20encomendar%20o%20Arranjo%20Premium%20Abraço%20de%20Urso." class="produto-btn">Pedir no WhatsApp</a>
+                </div>
+            </div>
+
+            <!-- Produto 11 -->
+            <div class="produto-card">
+                <img src="images/produto11-ovo-250g.jpeg" alt="Ovo de Chocolate Artesanal 250g" class="produto-imagem">
+                <div class="produto-info">
+                    <h3 class="produto-nome">Ovo de Chocolate Artesanal 250g</h3>
+                    <p class="produto-descricao">O clássico que não pode faltar! Delicioso ovo de chocolate ao leite artesanal de 250g, embalado para presente.</p>
+                    <p class="produto-preco">R$ 32,00</p>
+                    <a href="https://wa.me/5511982524518?text=Olá%20Patricia!%20Gostaria%20de%20encomendar%20o%20Ovo%20de%20Chocolate%20Artesanal%20250g." class="produto-btn">Pedir no WhatsApp</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEÇÃO ESPECIAL - BOMBONS DE FRUTAS SECAS -->
+        <div class="secao-bombons">
+            <h3>🍫 Bombons de Chocolate com Frutas Secas 🍫</h3>
+            <p class="destaque">⭐ Somente por Encomenda ⭐</p>
+            <p class="destaque">A combinação perfeita de chocolate nobre com um mix de castanhas e frutas secas. Ideal para compartilhar e presentear.</p>
+
+            <div class="opcoes-bombons">
+                <div class="opcao-bombom">
+                    <div class="quantidade">1 Kg</div>
+                    <div class="preco">R$ 128,00</div>
+                    <a href="https://wa.me/5511982524518?text=Olá%20Patricia!%20Gostaria%20de%20encomendar%201kg%20de%20Bombons%20de%20Chocolate%20com%20Frutas%20Secas." class="btn-opcao">Encomendar</a>
+                </div>
+
+                <div class="opcao-bombom">
+                    <div class="quantidade">1/2 Kg</div>
+                    <div class="preco">R$ 64,00</div>
+                    <a href="https://wa.me/5511982524518?text=Olá%20Patricia!%20Gostaria%20de%20encomendar%20500g%20de%20Bombons%20de%20Chocolate%20com%20Frutas%20Secas." class="btn-opcao">Encomendar</a>
+                </div>
+
+                <div class="opcao-bombom">
+                    <div class="quantidade">250g</div>
+                    <div class="preco">R$ 32,00</div>
+                    <a href="https://wa.me/5511982524518?text=Olá%20Patricia!%20Gostaria%20de%20encomendar%20250g%20de%20Bombons%20de%20Chocolate%20com%20Frutas%20Secas." class="btn-opcao">Encomendar</a>
+                </div>
+
+                <div class="opcao-bombom">
+                    <div class="quantidade">100g</div>
+                    <div class="preco">R$ 16,00</div>
+                    <a href="https://wa.me/5511982524518?text=Olá%20Patricia!%20Gostaria%20de%20encomendar%20100g%20de%20Bombons%20de%20Chocolate%20com%20Frutas%20Secas." class="btn-opcao">Encomendar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- BOTÃO FLUTUANTE WHATSAPP -->
+    <a href="https://wa.me/5511982524518?text=Olá%20Patricia!%20Vim%20pelo%20cardápio%20de%20Páscoa%20e%20gostaria%20de%20fazer%20um%20pedido." class="whatsapp-flutuante" title="Fale conosco no WhatsApp">💬</a>
+
+    <!-- RODAPÉ -->
+    <footer>
+        <h4>Patricia Mathias</h4>
+        <p>📱 WhatsApp: (11) 98252-4518</p>
+        <div class="footer-divider"></div>
+        <p class="footer-frase">🌸 Páscoa feita com carinho 🌸</p>
+    </footer>
+</body>
+</html>
