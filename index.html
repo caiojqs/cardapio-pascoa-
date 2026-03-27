@@ -313,22 +313,99 @@
             color: var(--esgotado);
         }
 
-        /* TAMANHOS */
-        .produto-tamanhos {
-            display: flex;
-            gap: 8px;
+        /* CARROSSEL DE VARIAÇÕES */
+        .carousel-container {
+            position: relative;
+            width: 100%;
             margin-bottom: 12px;
-            justify-content: center;
         }
 
-        .tamanho-tag {
-            background: var(--creme);
+        .carousel-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--creme), var(--rosa-suave));
+        }
+
+        .carousel-slide {
+            display: none;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .carousel-slide.active {
+            display: block;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .carousel-slide img {
+            width: 100%;
+            height: 220px;
+            object-fit: contain;
+        }
+
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 8px;
+        }
+
+        .carousel-btn {
+            background: var(--chocolate);
+            color: var(--branco);
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+        }
+
+        .carousel-btn:hover {
+            background: #8B5A3C;
+            transform: scale(1.02);
+        }
+
+        .carousel-btn.active {
+            background: var(--dourado);
             color: var(--chocolate);
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 11px;
+        }
+
+        .variacao-info {
+            background: var(--branco);
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 8px;
+            font-size: 12px;
+            color: var(--texto-escuro);
+            border-left: 3px solid var(--dourado);
+        }
+
+        .variacao-info .tamanho {
             font-weight: 700;
-            border: 1px solid var(--rosa-suave);
+            color: var(--chocolate);
+            margin-bottom: 4px;
+        }
+
+        .variacao-info .preco {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--dourado);
+            margin-bottom: 4px;
+        }
+
+        .variacao-info .componentes {
+            font-size: 11px;
+            color: #666;
+            line-height: 1.4;
         }
 
         /* SEÇÃO ESPECIAL - BOMBONS */
@@ -497,19 +574,50 @@
                 </div>
             </div>
 
-            <!-- Produto 2 -->
+            <!-- Produto 2 - Carrossel -->
             <div class="produto-card">
-                <img src="images/produto02-ovinho-bombom-novo.png" alt="Ovinho Latinha com Bombons" class="produto-imagem">
+                <div class="carousel-container">
+                    <div class="carousel-wrapper">
+                        <!-- Slide 1 - Pequeno -->
+                        <div class="carousel-slide active">
+                            <img src="images/produto02-ovinho-bombom-novo.png" alt="Ovinho Pequeno">
+                        </div>
+                        <!-- Slide 2 - Médio -->
+                        <div class="carousel-slide">
+                            <img src="images/produto02-ovinho-medio.png" alt="Ovinho Médio">
+                        </div>
+                        <!-- Slide 3 - Grande -->
+                        <div class="carousel-slide">
+                            <img src="images/produto02-ovinho-grande.png" alt="Ovinho Grande">
+                        </div>
+                    </div>
+                    <div class="carousel-controls">
+                        <button class="carousel-btn active" onclick="showSlide(0, this)">Pequeno</button>
+                        <button class="carousel-btn" onclick="showSlide(1, this)">Médio</button>
+                        <button class="carousel-btn" onclick="showSlide(2, this)">Grande</button>
+                    </div>
+                </div>
                 <div class="produto-info">
                     <h3 class="produto-nome">Ovinho Latinha com Bombons</h3>
-                    <p class="produto-descricao">Um mimo encantador! Ovinho em latinha decorada, recheado com 3 deliciosos bombons de chocolate.</p>
-                    <div class="produto-tamanhos">
-                        <span class="tamanho-tag">P</span>
-                        <span class="tamanho-tag">M</span>
-                        <span class="tamanho-tag">G</span>
+                    <p class="produto-descricao">Um mimo encantador! Ovinho em latinha decorada com diferentes variações e componentes.</p>
+                    
+                    <div id="variacao-0" class="variacao-info" style="display: block;">
+                        <div class="tamanho">Pequeno</div>
+                        <div class="preco">R$ 8,90</div>
+                        <div class="componentes">3 chocolates pequenos</div>
                     </div>
-                    <p class="produto-preco">R$ 8,90</p>
-                    <a href="https://wa.me/5511982524518?text=Olá%20Patricia!%20Gostaria%20de%20encomendar%20o%20Ovinho%20de%20Metal%20com%20Bombons." class="produto-btn">Pedir no WhatsApp</a>
+                    <div id="variacao-1" class="variacao-info" style="display: none;">
+                        <div class="tamanho">Médio</div>
+                        <div class="preco">R$ 18,00</div>
+                        <div class="componentes">Mini bolacha Oreo</div>
+                    </div>
+                    <div id="variacao-2" class="variacao-info" style="display: none;">
+                        <div class="tamanho">Grande</div>
+                        <div class="preco">R$ 36,00</div>
+                        <div class="componentes">Mini bolacha Oreo + 30g de chocolate</div>
+                    </div>
+                    
+                    <a href="https://wa.me/5511982524518?text=Olá%20Patricia!%20Gostaria%20de%20encomendar%20o%20Ovinho%20Latinha%20com%20Bombons." class="produto-btn">Pedir no WhatsApp</a>
                 </div>
             </div>
 
@@ -684,5 +792,26 @@
         <div class="footer-divider"></div>
         <p class="footer-frase">🌸 Páscoa feita com carinho 🌸</p>
     </footer>
+
+    <script>
+        function showSlide(index, button) {
+            // Ocultar todos os slides
+            const slides = document.querySelectorAll('.carousel-slide');
+            slides.forEach(slide => slide.classList.remove('active'));
+            
+            // Mostrar o slide selecionado
+            slides[index].classList.add('active');
+            
+            // Atualizar botões
+            const buttons = document.querySelectorAll('.carousel-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            
+            // Atualizar informações de variação
+            const variacoes = document.querySelectorAll('.variacao-info');
+            variacoes.forEach(v => v.style.display = 'none');
+            document.getElementById('variacao-' + index).style.display = 'block';
+        }
+    </script>
 </body>
 </html>
