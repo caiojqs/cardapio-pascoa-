@@ -22,6 +22,7 @@
             --branco: #FFFFFF;
             --texto-escuro: #3D2817;
             --sombra: rgba(0, 0, 0, 0.1);
+            --esgotado: #999;
         }
 
         body {
@@ -200,6 +201,7 @@
             display: flex;
             flex-direction: column;
             height: 100%;
+            position: relative;
         }
 
         .produto-card:hover {
@@ -282,6 +284,53 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
 
+        /* BADGE ESGOTADO */
+        .badge-esgotado {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            z-index: 10;
+            text-transform: uppercase;
+        }
+
+        .produto-card.esgotado {
+            opacity: 0.8;
+        }
+
+        .produto-card.esgotado .produto-btn {
+            background: var(--esgotado);
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .produto-card.esgotado .produto-preco {
+            color: var(--esgotado);
+        }
+
+        /* TAMANHOS */
+        .produto-tamanhos {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 12px;
+            justify-content: center;
+        }
+
+        .tamanho-tag {
+            background: var(--creme);
+            color: var(--chocolate);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-weight: 700;
+            border: 1px solid var(--rosa-suave);
+        }
+
         /* SEÇÃO ESPECIAL - BOMBONS */
         .secao-bombons {
             background: linear-gradient(135deg, var(--rosa-suave) 0%, var(--creme) 100%);
@@ -360,142 +409,59 @@
             transform: scale(1.02);
         }
 
-        /* BOTÃO FLUTUANTE WHATSAPP */
+        /* WHATSAPP FLUTUANTE */
         .whatsapp-flutuante {
             position: fixed;
             bottom: 20px;
             right: 20px;
+            background: #25D366;
+            color: white;
             width: 60px;
             height: 60px;
-            background: #25D366;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 30px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            z-index: 999;
-            animation: pulse 2s infinite;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             text-decoration: none;
+            z-index: 1000;
             transition: all 0.3s ease;
         }
 
         .whatsapp-flutuante:hover {
             transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            background: #128C7E;
         }
 
-        @keyframes pulse {
-            0%, 100% { box-shadow: 0 4px 15px rgba(37, 211, 102, 0.4); }
-            50% { box-shadow: 0 4px 25px rgba(37, 211, 102, 0.6); }
-        }
-
-        /* RODAPÉ */
+        /* FOOTER */
         footer {
-            background: linear-gradient(135deg, var(--chocolate) 0%, #8B5A3C 100%);
+            background: var(--chocolate);
             color: var(--branco);
-            padding: 30px 20px;
+            padding: 40px 20px;
             text-align: center;
-            margin-top: 40px;
         }
 
         footer h4 {
-            font-size: 16px;
+            font-size: 20px;
             margin-bottom: 10px;
         }
 
         footer p {
-            font-size: 13px;
-            opacity: 0.9;
-            margin-bottom: 8px;
+            font-size: 14px;
+            opacity: 0.8;
         }
 
         .footer-divider {
-            width: 40px;
+            width: 50px;
             height: 2px;
             background: var(--dourado);
-            margin: 15px auto;
+            margin: 20px auto;
         }
 
         .footer-frase {
             font-style: italic;
-            font-size: 14px;
-            margin-top: 15px;
-            opacity: 0.95;
-        }
-
-        /* RESPONSIVIDADE */
-        @media (max-width: 768px) {
-            header h1 {
-                font-size: 24px;
-            }
-
-            .banner h2 {
-                font-size: 20px;
-            }
-
-            .produtos-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .opcoes-bombons {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .secao-titulo {
-                font-size: 20px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            header h1 {
-                font-size: 20px;
-            }
-
-            header p {
-                font-size: 12px;
-            }
-
-            .banner {
-                padding: 20px;
-                margin: 15px;
-            }
-
-            .banner h2 {
-                font-size: 18px;
-            }
-
-            .produto-card {
-                border-radius: 12px;
-            }
-
-            .produto-imagem {
-                height: 180px;
-            }
-
-            .produto-nome {
-                font-size: 15px;
-            }
-
-            .produto-preco {
-                font-size: 18px;
-            }
-
-            .opcoes-bombons {
-                grid-template-columns: 1fr;
-            }
-
-            .whatsapp-flutuante {
-                width: 55px;
-                height: 55px;
-                font-size: 28px;
-                bottom: 15px;
-                right: 15px;
-            }
-
-            footer {
-                padding: 20px;
-            }
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -520,23 +486,29 @@
 
         <div class="produtos-grid">
             <!-- Produto 1 -->
-            <div class="produto-card">
+            <div class="produto-card esgotado">
+                <span class="badge-esgotado">Esgotado</span>
                 <img src="images/produto01-cesta.jpeg" alt="Kit Arte & Delícia" class="produto-imagem">
                 <div class="produto-info">
                     <h3 class="produto-nome">Kit Arte & Delícia</h3>
                     <p class="produto-descricao">Uma linda cestinha recheada com ovinhos e canetinhas para as crianças decorarem. Diversão e doçura juntos!</p>
                     <p class="produto-preco">R$ 48,50</p>
-                    <a href="https://wa.me/5511982524518?text=Olá%20Patricia!%20Gostaria%20de%20encomendar%20o%20Kit%20Arte%20%26%20Del%C3%ADcia." class="produto-btn">Pedir no WhatsApp</a>
+                    <a href="#" class="produto-btn">Esgotado</a>
                 </div>
             </div>
 
             <!-- Produto 2 -->
             <div class="produto-card">
-                <img src="images/produto02-ovinho-bombom.jpeg" alt="Ovinho Latinha com Bombons" class="produto-imagem">
+                <img src="images/produto02-ovinho-bombom-novo.png" alt="Ovinho Latinha com Bombons" class="produto-imagem">
                 <div class="produto-info">
                     <h3 class="produto-nome">Ovinho Latinha com Bombons</h3>
                     <p class="produto-descricao">Um mimo encantador! Ovinho em latinha decorada, recheado com 3 deliciosos bombons de chocolate.</p>
-                    <p class="produto-preco">R$ 7,50</p>
+                    <div class="produto-tamanhos">
+                        <span class="tamanho-tag">P</span>
+                        <span class="tamanho-tag">M</span>
+                        <span class="tamanho-tag">G</span>
+                    </div>
+                    <p class="produto-preco">R$ 8,90</p>
                     <a href="https://wa.me/5511982524518?text=Olá%20Patricia!%20Gostaria%20de%20encomendar%20o%20Ovinho%20de%20Metal%20com%20Bombons." class="produto-btn">Pedir no WhatsApp</a>
                 </div>
             </div>
